@@ -1,2 +1,11 @@
 # BASIC SERVER
-This playbook installs python3, miniconda, pip, wget and openssh-server on an empty machine to get ready for its posterior configuration.
+This playbook installs in a machine either with ssh access or locally:
+ - wget
+ - git
+ - ansible
+ - python3
+ - pip
+ - virtualenv
+ - nfs
+ - openssh
+
