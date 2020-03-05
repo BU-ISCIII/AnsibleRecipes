@@ -9,7 +9,6 @@
     - role: geerlingguy.git
     - role: uchida.miniconda
     - role: geerlingguy.pip
-    - role: manala.vim
     - role: geerlingguy.nfs
-    - { role: "nickjj.sshd", tags: "sshd" }
+    - role: arillso.sshd
 
