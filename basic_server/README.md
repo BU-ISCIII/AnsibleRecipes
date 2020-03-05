@@ -5,7 +5,7 @@ This playbook installs in a machine either with ssh access or locally:
  - ansible
  - python3
  - pip
- - virtualenv
+ - vim
  - nfs
  - openssh
 
