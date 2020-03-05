@@ -1,0 +1,13 @@
+---
+- hosts: local
+  become: true
+  pre_tasks:
+    - name: Install Dependencies
+      package:
+          name: ['vim', 'openssh-server', 'git', 'wget', 'make', 'python3', 'virtualenv']
+  roles:
+    - role: geerlingguy.repo-epel
+    - role: uchida.miniconda
+    - role: geerlingguy.pip
+    - { role: "nickjj.sshd", tags: "sshd" }
+
