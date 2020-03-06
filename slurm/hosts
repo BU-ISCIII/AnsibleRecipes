@@ -1,8 +1,8 @@
 [slurmservers]
 172.23.2.70
 
-[slurmdbdservers]
-172.23.2.72
+#[slurmdbdservers]
+#172.23.2.72
 
 [slurmexechosts]
 172.23.2.73

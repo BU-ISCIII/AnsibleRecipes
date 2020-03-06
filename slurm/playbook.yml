@@ -2,7 +2,8 @@
 - name: Slurm all in One
   hosts: all
   vars:
-    slurm_roles: ['controller', 'exec', 'dbd']
+#    slurm_roles: ['controller', 'exec', 'dbd']
+    slurm_roles: ['controller', 'exec']
   roles:
     - galaxyproject.repos
     - galaxyproject.slurm
