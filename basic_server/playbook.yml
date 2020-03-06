@@ -10,5 +10,4 @@
     - role: uchida.miniconda
     - role: geerlingguy.pip
     - role: geerlingguy.nfs
-    - role: arillso.sshd
 
