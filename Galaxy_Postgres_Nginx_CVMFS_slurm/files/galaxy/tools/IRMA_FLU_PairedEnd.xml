@@ -1,0 +1,81 @@
+<tool id="IRMA_FLU_PairedEnd" name="IRMA" version="0.6.7">
+  <description>FLU 0.6.7</description>
+
+  <command detect_errors="exit_code"><![CDATA[
+
+    IRMA FLU '$sample_R1' '$sample_R2' '$output_folder' &&
+
+    zip -r zipped_output.zip '$output_folder'
+
+  ]]></command>
+
+  <inputs>
+    <param format="fastq,fastq.gz" name="sample_R1" type="data" label="R1.fastq.gz/R1.fastq"/>
+    <param format="fastq,fastq.gz" optional="true" name="sample_R2" type="data" label="R2.fastq.gz/R2.fastq"/>
+    <param name="output_folder" type="text" label="sample_name"/>
+  </inputs>
+
+  <outputs>
+    <data format="zip" name="zip_folder" from_work_dir="zipped_output.zip" label="${tool.name} on ${on_string}: Zipped Results" />
+  </outputs>
+
+  <help>
+
+.. class:: infomark
+
+**Purpose**
+
+IRMA was designed for the robust assembly, variant calling, and phasing of highly variable RNA viruses. Currently IRMA is deployed with modules for influenza and ebolavirus. 
+
+-----
+
+.. class:: infomark
+
+**IRMA**
+
+This is a Galaxy wrapper. It merely exposes the external package IRMA which is documented at https://wonder.cdc.gov/amd/flu/irma/
+
+Kindly acknowledge it as well as this tool if you use it.
+
+
+.. class:: warningmark
+
+This version of the wrapper is ready to run with paired-end or sigle-end influenza sequencing data (*.fastq). GNU zipped (*.fastq.gz) fastq are also valid input.
+
+-----
+
+.. class:: infomark
+
+**USAGE**
+
+- To analyse a paired-end sample, select your R1 and R2 .fastq/.fastq.gz files as input and name your sample in the third parameter. Then click on "Execute".
+
+- To run a single-end sample, as above but just leave empty the R2 box. Then click on "Execute".
+
+
+  </help>
+
+  <citations>
+    <citation type="bibtex">
+@Article{Shepard2016,
+author="Shepard, Samuel S.
+and Meno, Sarah
+and Bahl, Justin
+and Wilson, Malania M.
+and Barnes, John
+and Neuhaus, Elizabeth",
+title="Viral deep sequencing needs an adaptive approach: IRMA, the iterative refinement meta-assembler",
+journal="BMC Genomics",
+year="2016",
+month="Sep",
+day="05",
+volume="17",
+number="1",
+pages="708",
+issn="1471-2164",
+doi="10.1186/s12864-016-3030-6",
+url="https://doi.org/10.1186/s12864-016-3030-6"
+}</citation>
+  </citations>
+
+</tool>

@@ -1,0 +1,13 @@
+---
+- name: Copy welcome page to static folder
+  copy:
+    src: welcome.html 
+    dest: /srv/galaxy/server/static/welcome.html
+- name: copy images required for wlcome.html into an images folder 1/2
+  copy:
+    src: images/logo_bu_isciii.png
+    dest: /srv/galaxy/server/static/images/logo_bu_isciii.png
+- name: copy images required for wlcome.html into an images folder 2/2
+  copy:
+    src: images/LOGO-grande-1-isciii_ministerio_ciencia.png
+    dest: /srv/galaxy/server/static/images/LOGO-grande-1-isciii_ministerio_ciencia.png

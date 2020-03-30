@@ -1,0 +1,45 @@
+---
+- hosts: galaxyservers
+  become: true
+  vars:
+    slurm_roles: ['controller', 'exec']
+    slurm_nodes:
+    - name: localhost
+      CPUs: 2                              # Here you would need to figure out how many cores your machine has. (Hint, `htop`)
+    slurm_config:
+      FastSchedule: 2                      # Ignore errors if the host actually has cores != 2
+      SelectType: select/cons_res
+      SelectTypeParameters: CR_CPU_Memory  # Allocate individual cores/memory instead of entire node
+  pre_tasks:
+    - name: Install Dependencies
+      package:
+          name: ['git', 'make', 'python3-psycopg2', 'virtualenv'] 
+  handlers:
+    - name: Restart Galaxy
+      systemd:
+        name: galaxy
+        state: restarted
+  roles:
+    - galaxyproject.postgresql
+    - role: natefoo.postgresql_objects
+      become: true
+      become_user: postgres
+    - geerlingguy.pip
+    - galaxyproject.galaxy
+    - role: uchida.miniconda
+      become: true
+      become_user: galaxy
+    - role: usegalaxy_eu.galaxy_systemd
+    - role: galaxyproject.nginx
+    - galaxyproject.cvmfs
+    - galaxyproject.repos
+    - galaxyproject.slurm
+    - role: usegalaxy_eu.gxadmin
+      become: true
+      become_user: root
+    - BUISCIII.aesthetics
+  post_tasks:
+    - name: Install slurm-drmaa
+      package:
+        name: slurm-drmaa1
+
